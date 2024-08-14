@@ -1,5 +1,25 @@
 ## Consumer Driven Contracts Using Pact Framework
-
+### Steps to run
+```
+$ mvn clean 
+$ mvn compile 
+$ mvn install 
+Start Docker 
+In docker terminal ,  
+$ \spring-boot-contract-testing-pact> docker-compose up -d 
+this should start the docker container. 
+Make sure the pact broker is running by explicitly starting the broker from the container  
+pact broker URL can be accessed at : http://localhost:8500/ 
+Now in Docker terminal , cd .\pact-contract-consumer\ 
+Issue the below command to publish the pact 
+View pact from the broker URL 
+$ \spring-boot-contract-testing-pact\pact-contract-consumer> mvn clean install pact:publish -D pact.broker.url=http://localhost:8500 
+Now in Docker terminal , cd .\pact-contract-consumer\ 
+$ \spring-boot-contract-testing-pact\pact-contract-provider> mvn clean install  -D pact.verifier.publishResults=true 
+(OR) 
+$ mvn test -D pact.verifier.publishResults=true 
+This will verify the pact 
+```
 #### Projects
 
 <table>
